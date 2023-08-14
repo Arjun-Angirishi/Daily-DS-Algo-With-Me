@@ -1,0 +1,26 @@
+// https://practice.geeksforgeeks.org/problems/number-of-unique-paths5339/1
+
+class Solution
+{
+    public:
+
+    int NumberOfPath(int a, int b)
+    {
+        vector<vector<int>> dp(a,vector<int> (b,0));
+        for(int i=0;i<a;i++){
+            for(int j=0;j<b;j++){
+                if(i==0&&j==0){
+                dp[i][j]=1;
+                continue;
+                }
+                if(i>0){
+                    dp[i][j]+=dp[i-1][j];
+                }
+                if(j>>0){
+                    dp[i][j]+=dp[i][j-1];
+                }
+            }
+        }
+        return dp[a-1][b-1];
+    }
+};
